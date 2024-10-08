@@ -1,4 +1,7 @@
 from sklearn.datasets import fetch_openml
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+
 
 print("\nCREDIT: \n")
 credit = fetch_openml(data_id=31)
@@ -16,9 +19,12 @@ print(mushroom.data)
 print(mushroom)
 print(mushroom.target)
 
-from sklearn.tree import DecisionTreeClassifier
+myTree = DecisionTreeClassifier(criterion="entropy") #untrained decision tree with entropy criteria. default uses Gini index
 
+myTree.fit(credit.data, credit.target) #trained
 
+print(tree.export_text(myTree))
 
+#Update: Line 24 did not train because I am using Datasets with Nominal Features.
 
 
